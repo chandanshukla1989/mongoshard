@@ -95,7 +95,7 @@ resource "aws_security_group" "sg_22" {
   vpc_id = "${aws_vpc.production-vpc.id}"
   ingress {
       from_port   = 22
-      to_port     = 65535
+      to_port     = 22
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   }
@@ -114,7 +114,7 @@ resource "aws_instance" "shard1" {
   count         = 3
   ami           = "${var.ami_machine}"
   instance_type = "${var.instancetype}"
-  subnet_id = "${count.index%2==1 ? "${aws_subnet.private-subnet-1.id}":"${aws_subnet.private-subnet-2.id}"}"
+  subnet_id = "${aws_subnet.private-subnet-1.id}":"${aws_subnet.private-subnet-2.id}"}"
   vpc_security_group_ids = ["${aws_security_group.sg_22.id}"]
   key_name = "${aws_key_pair.ec2key.key_name}"
   tags ={
