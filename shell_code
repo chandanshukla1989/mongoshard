@@ -1,0 +1,121 @@
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R router1
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R router2
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R router3
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R config1
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R config2
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R config3
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R shard1-replica1
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R shard1-replica2
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R shard1-replica3
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R shard2-replica1
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R shard2-replica2
+ssh-keygen -f "/home/ubuntu/.ssh/known_hosts" -R shard2-replica3
+
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem shard2-replica1 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem shard2-replica2 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem shard2-replica3 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem shard1-replica1 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem shard1-replica2 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem shard1-replica3 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem config1 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem config2 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem config3 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem router1 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem router2 "echo Adding Keys in Host"
+ssh -o "StrictHostKeyChecking=no" -i awstraining.pem router3 "echo Adding Keys in Host"
+
+scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@config1:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config1 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@config2:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config2 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@config3:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config3 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@router1:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router1 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@router2:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router2 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@router3:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router3 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@shard1-replica1:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica1 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@shard1-replica2:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica2 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@shard1-replica3:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica3 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@shard2-replica1:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica1 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@shard2-replica2:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica2 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/hostlist ubuntu@shard2-replica3:~
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica3 "sudo bash -c 'cat /home/ubuntu/hostlist >> /etc/hosts'"
+########################copy conf file on config servers########################
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/configserver.conf ubuntu@config1:~
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/configserver.conf ubuntu@config2:~
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/configserver.conf ubuntu@config3:~
+
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config1 "sudo cp -r /home/ubuntu/configserver.conf /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config2 "sudo cp -r /home/ubuntu/configserver.conf /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config3 "sudo cp -r /home/ubuntu/configserver.conf /etc/mongod.conf"
+
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config1 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config2 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@config3 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+
+########################copy conf file on router servers########################
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/router.conf ubuntu@router1:~
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/router.conf ubuntu@router2:~
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/router.conf ubuntu@router3:~
+
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router1 "sudo cp -r /home/ubuntu/router.conf /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router2 "sudo cp -r /home/ubuntu/router.conf /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router3 "sudo cp -r /home/ubuntu/router.conf /etc/mongod.conf"
+
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router1 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router2 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router3 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+
+########################copy conf file on shard1 servers########################
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/shard1.conf ubuntu@shard1-replica1:~
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/shard1.conf ubuntu@shard1-replica2:~
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/shard1.conf ubuntu@shard1-replica3:~
+
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica1 "sudo cp -r /home/ubuntu/shard1.conf /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica2 "sudo cp -r /home/ubuntu/shard1.conf /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica3 "sudo cp -r /home/ubuntu/shard1.conf /etc/mongod.conf"
+
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica1 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica2 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica3 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+
+########################copy conf file on router servers########################
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/shard2.conf ubuntu@shard2-replica1:~
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/shard2.conf ubuntu@shard2-replica2:~
+ scp -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem /home/ubuntu/shard2.conf ubuntu@shard2-replica3:~
+
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica1 "sudo cp -r /home/ubuntu/shard2.conf /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica2 "sudo cp -r /home/ubuntu/shard2.conf /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica3 "sudo cp -r /home/ubuntu/shard2.conf /etc/mongod.conf"
+
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica1 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica2 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica3 "sudo chown -R mongodb:mongodb /etc/mongod.conf"
+
+########################################Restart mongo on each server###################################
+ansible-playbook mongorestart.yaml
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router1 "sudo mongos --config /etc/mongod.conf --fork"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router2 "sudo mongos --config /etc/mongod.conf --fork"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@router3 "sudo mongos --config /etc/mongod.conf --fork"
+
+#####################################change host name of primary replica of both shards#####################
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard1-replica1 "sudo hostnamectl set-hostname shard1-replica1"
+ssh -o "StrictHostKeyChecking=no" -i /home/ubuntu/awstraining.pem ubuntu@shard2-replica1 "sudo hostnamectl set-hostname shard2-replica1"
+############################################Replica on config server#######################################
+mongo --host config1 < /home/ubuntu/config_replica
+mongo --host shard1-replica1 < shard1_replica
+mongo --host shard2-replica1 < shard2_replica
+
+############################################Replica on router server#######################################
+ssh -i /home/ubuntu/awstraining.pem ubuntu@router1 "sudo mongos --config /etc/mongod.conf --fork"
+ssh -i /home/ubuntu/awstraining.pem ubuntu@router2 "sudo mongos --config /etc/mongod.conf --fork"
+ssh -i /home/ubuntu/awstraining.pem ubuntu@router3 "sudo mongos --config /etc/mongod.conf --fork"
+mongo --host router1 < router_replica
